@@ -124,7 +124,7 @@ def decimal_to_base_N_float(input: float, N: int=2, t: int = 10, verbose: bool=F
 
     print(str(d) + "* {}^{}".format(N, e))
 
-def decimal_to_base_N(input: Union[int, float], N: int=2, t: Optional[int] = 10, verbose: bool=False)
+def decimal_to_base_N(input: Union[int, float], N: int=2, t: Optional[int] = 10, verbose: bool=False):
     if isinstance(input, int):
         decimal_to_base_N_int(input=input,N=N,verbose=verbose)
     if isinstance(input, float):

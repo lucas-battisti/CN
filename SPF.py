@@ -69,6 +69,7 @@ def decimal_to_base_N_float(input: float, N: int=2, t: int = 10, verbose: bool=F
             
         ineq[-1] = '<'
         mantissa = mantissas[-1]
+        e -= 1
         
     if input < 1:
         

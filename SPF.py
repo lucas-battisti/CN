@@ -96,9 +96,11 @@ def decimal_to_base_N_float(input: float, N: int=2, t: int = 10, verbose: bool=F
     
     if verbose:   
         for i in range(len(mantissas)):
+            
+            ii = i
         
             if e < 0:
-                ii = -i
+                ii = -ii
         
             print("{}/({}^{}) = ".format(input, N, ii)
                 + str(mantissas[i]) + ineq[i] + "1")

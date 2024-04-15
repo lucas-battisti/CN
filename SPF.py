@@ -112,17 +112,9 @@ def decimal_to_base_N_float(input: float, N: int=2, t: int = 10, verbose: bool=F
         print("\n")
     
         for i in range(len(d)):
-            print(str(mantissas2[i]) +
-                  " = d = d{} {}^-1 + d{} {}^-2 + ...".format(i+1, N, i+2, N))
+            print('{}*{} = {}'.format(N, mantissas2[i], N*mantissas2[i]))
             print("\n")
-            print(str(N*mantissas2[i]) +
-                  " = {}d = d{} + d{} {}^-2 + ...".format(N, i+1, N, i+2, N))
-            print("\n")
-            print("Deduzimos que d{} é igual à parte inteira de {}d:".format(i+1, N))
-            print(" d{} = int({}) = {}".format(i+1, N*mantissas2[i], d[i]))
-            print("\n")
-            print("Agora redefinimos d subtraindo-o à d{}".format(i+1))
-            print("d <- d - d{} = {}".format(i+1, mantissas2[i+1]))
+            print("d{} = {} (parte inteira). Agora, para a parte decimal, temos:".format(i+1, int(N*mantissas2[i])))       
             print("\n")
 
     print(str(d) + "* {}^{}".format(N, e))

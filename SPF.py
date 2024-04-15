@@ -114,7 +114,7 @@ def decimal_to_base_N_float(input: float, N: int=2, t: int = 10, verbose: bool=F
         for i in range(len(d)):
             print('{}*{} = {}'.format(N, mantissas2[i], N*mantissas2[i]))
             print("\n")
-            print("d{} = {} (parte inteira). Agora, para a parte decimal, temos:".format(i+1, int(N*mantissas2[i])))       
+            print("d{} = {} (parte inteira). Agora, para a parte decimal ({}), temos:".format(i+1, int(N*mantissas2[i]), N*mantissas2[i]-int(N*mantissas2[i])))       
             print("\n")
 
     print(str(d) + "* {}^{}".format(N, e))
@@ -130,7 +130,7 @@ def SNPF_info(b:int, t:int, m:int, M:int):
     c = 2*(M + m + 1)*(b - 1) * b**(t-1) + 1
     eps = b**(1-t)
     min = b**(-1-m)
-    max = b**(t-1) * b**(M-t)
+    max = (b**(t-1)) * (b**(M-t))
     
     print('Cardinalidade: 2*(M + m + 1)(β - 1) * β^(t-1) + 1 =')
     print(c)

@@ -2,7 +2,8 @@ import numpy as np
 from typing import Union, Callable
 
 
-def bisses(f: Callable[[float], float], a: float, b: float,
+def bisses(f: Callable[[float], float],
+           a: float, b: float,
            max_iter: int, err: Union[float, int],
            verbose: bool = False):
     
@@ -85,7 +86,7 @@ def mils(phi: Callable[[float], float],
         if verbose:
             print("x{} = {}".format(k, x[k]))
             
-            print("x{} = φ(x{}) =".format(k+1, k, phixk))
+            print("x{} = φ(x{}) = {}".format(k+1, k, phixk))
             
             print("---------------------------------------------------")
         

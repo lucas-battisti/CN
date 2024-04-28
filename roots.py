@@ -156,7 +156,7 @@ def newton(f: Callable[[float], float], df: Callable[[float], float],
             print("---------------------------------------------------")
         
         if len(x) > 1 and err(x[k+1], x[k], root)[0] < eps:
-            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root) + '< {}'.format(eps))
+            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="x"+str(k), root=root) + '< {}'.format(eps))
             return x[k+1]
         
     print("Chegou a máximo de iterações (max_iter)")

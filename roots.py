@@ -1,14 +1,32 @@
 import numpy as np
 from typing import Union, Callable
 
+def err_abs(xn: float = None, xn_1: float = None,
+            root: float = None) -> float:
+    
+    if root:
+        return abs(xn - root), "|{xn} - {root}|"
+    else:
+        return abs(xn - xn_1), "|{xn} - {xn_1}|"
+    
+def err_rel(xn: float = None, xn_1: float = None,
+            root: float = None) -> float:
+    
+    if root:
+        return abs(xn - root)/abs(root), "|{xn} - {root}|/|{root}|"
+    else:
+        return abs(xn - xn_1)/abs(xn), "|{xn} - {xn_1}|/|{xn}|"
+
 
 def bisses(f: Callable[[float], float],
            a: float, b: float,
-           max_iter: int, err: Union[float, int],
-           verbose: bool = False):
+           max_iter: int, err: str, eps: float, root: float = None,
+           verbose: bool = False) -> float:
     
-    if isinstance(err, int):
-        err = 0.5*10**(-err)
+    if str == 'abs':
+        err = err_abs
+    if str == 'rel':
+        err = err_rel
         
     c = []
     
@@ -52,8 +70,8 @@ def bisses(f: Callable[[float], float],
             print("---------------------------------------------------")
                 
                 
-        if len(c) > 1 and abs(c[k] - c[k-1]) < err:
-            print("|c{} - c{}| < {}".format(k, k-1, err))
+        if len(c) > 1 and err(c[k], c[k-1], root)[0] < eps:
+            print(err(c[k], c[k-1], root)[1].format(xn="c"+str(k), xn_1="c"+str(k-1), root=root))
             return c[k]
             
         a, b = new_a[1], new_b[1]
@@ -64,11 +82,13 @@ def bisses(f: Callable[[float], float],
 
 def mils(phi: Callable[[float], float],
          x0: float,
-         max_iter: int, err: Union[float, int],
-         verbose: bool = False):
+         max_iter: int, err: str, eps: float, root: float = None,
+         verbose: bool = False) -> float:
     
-    if isinstance(err, int):
-        err = 0.5*10**(-err)
+    if str == 'abs':
+        err = err_abs
+    if str == 'rel':
+        err = err_rel
         
     x = [x0]
     
@@ -90,8 +110,8 @@ def mils(phi: Callable[[float], float],
             
             print("---------------------------------------------------")
         
-        if len(x) > 1 and abs(x[k] - x[k+1]) < err:
-            print("|x{} - x{}| < {}".format(k, k+1, err))
+        if len(x) > 1 and err(x[k+1], x[k], root)[0] < eps:
+            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root))
             return x[k+1]
         
     print("Chegou a máximo de iterações (max_iter)")
@@ -102,11 +122,13 @@ def mils(phi: Callable[[float], float],
 
 def newton(f: Callable[[float], float], df: Callable[[float], float],
            x0: float,
-           max_iter: int, err: Union[float, int],
-           verbose: bool = False):
+           max_iter: int, err: str, eps: float, root: float = None,
+           verbose: bool = False) -> float:
     
-    if isinstance(err, int):
-        err = 0.5*10**(-err)
+    if str == 'abs':
+        err = err_abs
+    if str == 'rel':
+        err = err_rel
         
     x = [x0]
     
@@ -130,8 +152,8 @@ def newton(f: Callable[[float], float], df: Callable[[float], float],
             
             print("---------------------------------------------------")
         
-        if len(x) > 1 and abs(x[k] - x[k+1]) < err:
-            print("|x{} - x{}| < {}".format(k, k+1, err))
+        if len(x) > 1 and err(x[k+1], x[k], root)[0] < eps:
+            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root))
             return x[k+1]
         
     print("Chegou a máximo de iterações (max_iter)")
@@ -139,11 +161,13 @@ def newton(f: Callable[[float], float], df: Callable[[float], float],
     
 def secante(f: Callable[[float], float],
            x0: float, x1: float,
-           max_iter: int, err: Union[float, int],
-           verbose: bool = False):
+           max_iter: int, err: str, eps: float, root: float = None,
+           verbose: bool = False) -> float:
     
-    if isinstance(err, int):
-        err = 0.5*10**(-err)
+    if str == 'abs':
+        err = err_abs
+    if str == 'rel':
+        err = err_rel
         
     x = [x0, x1]
     
@@ -167,6 +191,10 @@ def secante(f: Callable[[float], float],
         
         if len(x) > 1 and abs(x[k+1] - x[k+2]) < err:
             print("|x{} - x{}| < {}".format(k+1, k+2, err))
+            return x[k+2]
+        
+        if len(x) > 1 and err(x[k+2], x[k+1], root)[0] < eps:
+            print(err(x[k+2], x[k+1], root)[1].format(xn="x"+str(k+2), xn_1="c"+str(k+1), root=root))
             return x[k+2]
         
     print("Chegou a máximo de iterações (max_iter)")

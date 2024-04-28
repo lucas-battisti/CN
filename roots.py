@@ -71,7 +71,7 @@ def bisses(f: Callable[[float], float],
                 
                 
         if len(c) > 1 and err(c[k], c[k-1], root)[0] < eps:
-            print(err(c[k], c[k-1], root)[1].format(xn="c"+str(k), xn_1="x"+str(k-1), root=root) + '< {}'.format(eps))
+            print(err(c[k], c[k-1], root)[1].format(xn="c"+str(k), xn_1="c"+str(k-1), root=root) + '< {}'.format(eps))
             return c[k]
             
         a, b = new_a[1], new_b[1]

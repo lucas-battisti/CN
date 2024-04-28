@@ -23,6 +23,9 @@ def bisses(f: Callable[[float], float],
            max_iter: int, err: str, eps: float, root: float = None,
            verbose: bool = False) -> float:
     
+    if a >= b:
+            raise ValueError("a >= b")
+    
     if err == 'abs':
         err = err_abs
     if err == 'rel':

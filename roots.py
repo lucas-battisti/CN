@@ -23,9 +23,9 @@ def bisses(f: Callable[[float], float],
            max_iter: int, err: str, eps: float, root: float = None,
            verbose: bool = False) -> float:
     
-    if str == 'abs':
+    if err == 'abs':
         err = err_abs
-    if str == 'rel':
+    if err == 'rel':
         err = err_rel
         
     c = []
@@ -85,9 +85,9 @@ def mils(phi: Callable[[float], float],
          max_iter: int, err: str, eps: float, root: float = None,
          verbose: bool = False) -> float:
     
-    if str == 'abs':
+    if err == 'abs':
         err = err_abs
-    if str == 'rel':
+    if err == 'rel':
         err = err_rel
         
     x = [x0]
@@ -125,9 +125,9 @@ def newton(f: Callable[[float], float], df: Callable[[float], float],
            max_iter: int, err: str, eps: float, root: float = None,
            verbose: bool = False) -> float:
     
-    if str == 'abs':
+    if err == 'abs':
         err = err_abs
-    if str == 'rel':
+    if err == 'rel':
         err = err_rel
         
     x = [x0]
@@ -164,9 +164,9 @@ def secante(f: Callable[[float], float],
            max_iter: int, err: str, eps: float, root: float = None,
            verbose: bool = False) -> float:
     
-    if str == 'abs':
+    if err == 'abs':
         err = err_abs
-    if str == 'rel':
+    if err == 'rel':
         err = err_rel
         
     x = [x0, x1]

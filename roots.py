@@ -137,7 +137,7 @@ def newton(f: Callable[[float], float], df: Callable[[float], float],
     print("Chegou a máximo de iterações (max_iter)")
     return x[-1]
     
-def newton(f: Callable[[float], float],
+def secante(f: Callable[[float], float],
            x0: float, x1: float,
            max_iter: int, err: Union[float, int],
            verbose: bool = False):

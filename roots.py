@@ -189,10 +189,6 @@ def secante(f: Callable[[float], float],
             
             print("---------------------------------------------------")
         
-        if len(x) > 1 and abs(x[k+1] - x[k+2]) < err:
-            print("|x{} - x{}| < {}".format(k+1, k+2, err))
-            return x[k+2]
-        
         if len(x) > 1 and err(x[k+2], x[k+1], root)[0] < eps:
             print(err(x[k+2], x[k+1], root)[1].format(xn="x"+str(k+2), xn_1="c"+str(k+1), root=root) + '< {}'.format(eps))
             return x[k+2]

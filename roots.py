@@ -71,7 +71,7 @@ def bisses(f: Callable[[float], float],
                 
                 
         if len(c) > 1 and err(c[k], c[k-1], root)[0] < eps:
-            print(err(c[k], c[k-1], root)[1].format(xn="c"+str(k), xn_1="c"+str(k-1), root=root))
+            print(err(c[k], c[k-1], root)[1].format(xn="c"+str(k), xn_1="c"+str(k-1), root=root) + '< {}'.format(eps))
             return c[k]
             
         a, b = new_a[1], new_b[1]
@@ -111,7 +111,7 @@ def mils(phi: Callable[[float], float],
             print("---------------------------------------------------")
         
         if len(x) > 1 and err(x[k+1], x[k], root)[0] < eps:
-            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root))
+            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root) + '< {}'.format(eps))
             return x[k+1]
         
     print("Chegou a máximo de iterações (max_iter)")
@@ -153,7 +153,7 @@ def newton(f: Callable[[float], float], df: Callable[[float], float],
             print("---------------------------------------------------")
         
         if len(x) > 1 and err(x[k+1], x[k], root)[0] < eps:
-            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root))
+            print(err(x[k+1], x[k], root)[1].format(xn="x"+str(k+1), xn_1="c"+str(k), root=root) + '< {}'.format(eps))
             return x[k+1]
         
     print("Chegou a máximo de iterações (max_iter)")
@@ -194,7 +194,7 @@ def secante(f: Callable[[float], float],
             return x[k+2]
         
         if len(x) > 1 and err(x[k+2], x[k+1], root)[0] < eps:
-            print(err(x[k+2], x[k+1], root)[1].format(xn="x"+str(k+2), xn_1="c"+str(k+1), root=root))
+            print(err(x[k+2], x[k+1], root)[1].format(xn="x"+str(k+2), xn_1="c"+str(k+1), root=root) + '< {}'.format(eps))
             return x[k+2]
         
     print("Chegou a máximo de iterações (max_iter)")

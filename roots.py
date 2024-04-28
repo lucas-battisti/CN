@@ -151,10 +151,7 @@ def secante(f: Callable[[float], float],
         
         f0 = f(x[k])
         f1 = f(x[k+1])
-        
-        if fxk == 0:
-            print("f(x{}) = 0.0".format(k))
-            return x[k]
+    
             
         
         x.append((x[k]*f1 - x[k+1]*f0)/(f1-f0))
